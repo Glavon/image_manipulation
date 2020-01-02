@@ -1,5 +1,16 @@
 #include "bmp.h"
 using namespace std;
+BMP::BMP(const BMP &bmp) {
+    pixels = new vector<Pixel*>;
+    fheader = bmp.fheader;
+    iheader = bmp.iheader;
+    cheader = bmp.cheader;
+    for(int i = 0; i < bmp.pixels->size(); ++i) {
+        pixels->push_back(bmp.pixels->at(i));
+    }
+    width = bmp.width;
+    height = bmp.height;
+}
 BMP::BMP(string filename) {
     pixels = new vector<Pixel*>;
     read(filename);

@@ -4,6 +4,7 @@
 #include "image.h"
 class BMP : public Image {
     public:
+    BMP(const BMP &bmp);
     BMP(std::string filename);
     BMP(int32_t width, int32_t height);
     ~BMP();
