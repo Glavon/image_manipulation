@@ -6,7 +6,8 @@ BMP::BMP(const BMP &bmp) {
     iheader = bmp.iheader;
     cheader = bmp.cheader;
     for(int i = 0; i < bmp.pixels->size(); ++i) {
-        pixels->push_back(bmp.pixels->at(i));
+        Pixel *p = new Pixel(*bmp.pixels->at(i));
+        pixels->push_back(p);
     }
     width = bmp.width;
     height = bmp.height;
