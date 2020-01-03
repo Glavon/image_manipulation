@@ -7,10 +7,11 @@
 class Image {
     public:
     friend class BMP;
-    virtual void update_header() = 0;
+    friend class PNG;
+    virtual void update_metadata() = 0;
     virtual void print(std::ostream &os) const = 0;
     virtual void read(const std::string &filename) = 0;
-    virtual void write(const std::string &filename) = 0;
+    virtual void write(const std::string &filename) const = 0;
     void compress(int factor);
     void rotate(std::string direction);
     void flip(std::string axis);

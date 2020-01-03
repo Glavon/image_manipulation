@@ -26,7 +26,7 @@ BMP::~BMP() {
     clear_pixels();
     delete pixels;
 }
-void BMP::update_header() {
+void BMP::update_metadata() {
     iheader.width = uint32_t(width);
     iheader.height = uint32_t(height);
     iheader.size_image = uint32_t(width*height*iheader.bit_count/8);
@@ -114,11 +114,10 @@ void BMP::read(const string &filename) {
         throw runtime_error("Couldn't read file");
     }
     inp.close();
-    update_header();
+    update_metadata();
     return;
 }
-void BMP::write(const string &filename) {
-    update_header();
+void BMP::write(const string &filename) const {
     ofstream out(filename, ios_base::binary);
     out.write((char*)&fheader, sizeof(fheader));
     out.write((char*)&iheader, sizeof(iheader));

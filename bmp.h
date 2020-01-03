@@ -1,6 +1,5 @@
 #ifndef bmp_file
 #define bmp_file
-#include <string>
 #include "image.h"
 class BMP : public Image {
     public:
@@ -8,10 +7,10 @@ class BMP : public Image {
     BMP(std::string filename);
     BMP(int32_t width, int32_t height);
     ~BMP();
-    void update_header();
+    void update_metadata();
     void print(std::ostream &os) const;
     void read(const std::string &filename);
-    void write(const std::string &filename);
+    void write(const std::string &filename) const;
     friend std::ostream& operator<<(std::ostream& os, const BMP &bmp) {
         bmp.print(os);
         return os;

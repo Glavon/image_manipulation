@@ -43,7 +43,7 @@ void Image::enhance(int factor) {
     delete old_data;
     width = new_width;
     height = new_height;
-    update_header();
+    update_metadata();
     return;
 }
 void Image::invert() {
@@ -71,7 +71,7 @@ void Image::flip_horizontal() {
     vector<Pixel*> *old_data = pixels;
     pixels = new_data;
     delete old_data;
-    update_header();
+    update_metadata();
     return;
 }
 void Image::flip_vertical() {
@@ -84,7 +84,7 @@ void Image::flip_vertical() {
     vector<Pixel*> *old_data = pixels;
     pixels = new_data;
     delete old_data;
-    update_header();
+    update_metadata();
     return;
 }
 void Image::rotate_right() {
@@ -100,7 +100,7 @@ void Image::rotate_right() {
     uint32_t temp = width;
     width = height;
     height = temp;
-    update_header();
+    update_metadata();
     return;
 }
 void Image::rotate_left() {
@@ -116,7 +116,7 @@ void Image::rotate_left() {
     uint32_t temp = width;
     width = height;
     height = temp;
-    update_header();
+    update_metadata();
     return;
 }
 void Image::compress() {
@@ -149,7 +149,7 @@ void Image::compress() {
     delete old_data;
     width = new_width;
     height = new_height;
-    update_header();
+    update_metadata();
     return;
 }
 string Image::hex(int i) const {
