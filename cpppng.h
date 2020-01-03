@@ -4,11 +4,11 @@
 #include "image.h"
 class PNG : public Image {
     public:
-    PNG(const PNG &bmp);
-    PNG(std::string filename);
+    PNG(const PNG &png);
+    PNG(const std::string &filename);
     PNG(int32_t width, int32_t height);
     ~PNG();
-    void update_header();
+    void update_metadata();
     void print(std::ostream &os) const;
     void read(const std::string &filename);
     void write(const std::string &filename) const;
@@ -17,7 +17,10 @@ class PNG : public Image {
         return os;
     }
     private:
-    png_struct *pngs;
-    png_info *pngi;
+    png_structp png;
+    png_infop pngi;
+    png_byte color_type;
+    png_byte bit_depth;
+    png_bytep *row_pointers = NULL;
 };
 #endif

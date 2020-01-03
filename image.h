@@ -8,6 +8,8 @@ class Image {
     public:
     friend class BMP;
     friend class PNG;
+    Image();
+    ~Image();
     virtual void update_metadata() = 0;
     virtual void print(std::ostream &os) const = 0;
     virtual void read(const std::string &filename) = 0;

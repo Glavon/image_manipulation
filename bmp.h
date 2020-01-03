@@ -4,9 +4,8 @@
 class BMP : public Image {
     public:
     BMP(const BMP &bmp);
-    BMP(std::string filename);
+    BMP(const std::string &filename);
     BMP(int32_t width, int32_t height);
-    ~BMP();
     void update_metadata();
     void print(std::ostream &os) const;
     void read(const std::string &filename);

@@ -1,7 +1,6 @@
 #include "bmp.h"
 using namespace std;
 BMP::BMP(const BMP &bmp) {
-    pixels = new vector<Pixel*>;
     fheader = bmp.fheader;
     iheader = bmp.iheader;
     cheader = bmp.cheader;
@@ -12,19 +11,12 @@ BMP::BMP(const BMP &bmp) {
     width = bmp.width;
     height = bmp.height;
 }
-BMP::BMP(string filename) {
-    pixels = new vector<Pixel*>;
+BMP::BMP(const string &filename) {
     read(filename);
 }
 BMP::BMP(int32_t width, int32_t height) {
     iheader.width = uint8_t(width);
     iheader.height = uint8_t(height);
-    
-    pixels = new vector<Pixel*>;
-}
-BMP::~BMP() {
-    clear_pixels();
-    delete pixels;
 }
 void BMP::update_metadata() {
     iheader.width = uint32_t(width);

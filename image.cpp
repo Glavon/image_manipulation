@@ -1,6 +1,13 @@
 #include "image.h"
 #include <iostream>
 using namespace std;
+Image::Image() {
+    pixels = new vector<Pixel*>;
+}
+Image::~Image() {
+    clear_pixels();
+    delete pixels;
+}
 void Image::compress(int factor) {
     for(int i = 0; i < factor; ++i) {
         compress();
