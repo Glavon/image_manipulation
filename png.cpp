@@ -20,7 +20,6 @@ void PNG::update_metadata() {
 void PNG::print(ostream &os) const {
     os << "Width x Height" << endl;
     os << png_get_image_width(png,pngi) << "x" << png_get_image_height(png,pngi) << endl;
-    os << png_get_
 }
 void PNG::read(const string &filename) {
     FILE *inp = fopen(filename.c_str(), "rb");
