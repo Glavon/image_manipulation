@@ -1,39 +1,19 @@
 #include "image.h"
 #include <iostream>
 using namespace std;
-/*
-Default Image Constructor
-Allocates space on the heap for pointers to the pixels
-that are created later
-*/
+
 Image::Image() {
     pixels = new vector<Pixel*>;
 }
-/*
-Default Image Destructor
-Clears all pixels from the heap and deletes the pixels pointer
-*/
 Image::~Image() {
     clear_pixels();
     delete pixels;
 }
-/*
-Compresses the image by finding the smallest prime
-that is a factor of the width and height of the image,
-takes a square of pixels, creates a new pixel with the average
-RGB values from the square, and pushes it into a new data vector
-which replaces the original data vector. Repeated *factor* times
-*/
 void Image::compress(int factor) {
     for(int i = 0; i < factor; ++i) {
         compress();
     }
 }
-/*
-Rotates the image 90 degrees in the direction given,
-"right" or "left", calls rotate_right() and rotate_left()
-repsectively
-*/
 void Image::rotate(string direction) {
     if(direction == "right") {
         rotate_right();
@@ -44,11 +24,6 @@ void Image::rotate(string direction) {
     }
     return;
 }
-/*
-Gives the mirror image across the given axis,
-"horizontal" or "vertical" and calls flip_horizontal()
-and flip_vertical() respectively
-*/
 void Image::flip(string axis) {
     if(axis == "vertical") {
         flip_vertical();
@@ -56,10 +31,6 @@ void Image::flip(string axis) {
         flip_horizontal();
     }
 }
-/*
-Enlarges the image by taking one pixel and making it
-into four, height and width are doubled. Repeated *factor* times
-*/
 void Image::enhance(int factor) {
     vector<Pixel*> *new_data = new vector<Pixel*>;
     int new_width = width*factor;
@@ -83,38 +54,21 @@ void Image::enhance(int factor) {
     update_metadata();
     return;
 }
-/*
-Inverts each pixel in the image by replacing subtracting each RGB
-value from 255
-*/
 void Image::invert() {
     for(auto p: *pixels) {
         p->invert();
     }
 }
-/*
-Sets the given color ("red", "green", "blue") to 0 
-for each pixel in the image
-*/
 void Image::remove_color(string color) {
     for(auto p: *pixels) {
         p->remove_color(color);
     }
 }
-/*
-Increases or decreases each RGB value by num
-if it is above or below 127 respectively
-*/
 void Image::contrast(int num) {
     for(auto p: *pixels) {
         p->contrast(num);
     }
 }
-/*
-Flips the image horizontally by creating a new data
-vector, pushing a pointer to each pixel into the new vector,
-reordering the rows from 0 to height-1 to height-1 to 0
-*/
 void Image::flip_horizontal() {
     vector<Pixel*> *new_data = new vector<Pixel*>;
     for(int r = 0; r < height; ++r) {
@@ -128,11 +82,6 @@ void Image::flip_horizontal() {
     update_metadata();
     return;
 }
-/*
-Flips the image horizontally by creating a new data
-vector, pushing a pointer to each pixel into the new vector,
-reordering the columns from 0 to width-1 to width-1 to 0
-*/
 void Image::flip_vertical() {
     vector<Pixel*> *new_data = new vector<Pixel*>;
     for(int r = height-1; r >= 0; --r) {
@@ -146,10 +95,6 @@ void Image::flip_vertical() {
     update_metadata();
     return;
 }
-/*
-Rotates the image to the right, reordering pointers to pixels
-in a new data vector and swapping width and height
-*/
 void Image::rotate_right() {
     vector<Pixel*> *new_data = new vector<Pixel*>;
     for(int c = width-1; c >= 0; --c) {
@@ -165,10 +110,7 @@ void Image::rotate_right() {
     height = temp;
     update_metadata();
     return;
-}/*
-Rotates the image to the left, reordering pointers to pixels
-in a new data vector and swapping width and height
-*/
+}
 void Image::rotate_left() {
     vector<Pixel*> *new_data = new vector<Pixel*>;
     for(int c = 0; c < width; ++c) {
