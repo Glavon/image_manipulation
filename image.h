@@ -19,9 +19,22 @@ class Image {
     Clears all pixels from the heap and deletes the pixels pointer
     */
     ~Image();
+    /*
+    Updates the metadata of the image, different for each 
+    type of image
+    */
     virtual void update_metadata() = 0;
+    /*
+    Prints metadata of the image e.g. width, height, bit count, etc
+    */
     virtual void print(std::ostream &os) const = 0;
+    /*
+    Reads image in from file
+    */
     virtual void read(const std::string &filename) = 0;
+    /*
+    Writes image to file
+    */
     virtual void write(const std::string &filename) const = 0;
     /*
     Compresses the image by finding the smallest prime
