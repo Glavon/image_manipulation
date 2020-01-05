@@ -9,6 +9,9 @@ Image::~Image() {
     clear_pixels();
     delete pixels;
 }
+void Image::set_image_name(string name) {
+    image_name = name;
+}
 void Image::compress(int factor) {
     for(int i = 0; i < factor; ++i) {
         compress();

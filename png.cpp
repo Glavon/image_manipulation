@@ -2,26 +2,33 @@
 #include <string>
 using namespace std;
 
-PNG::PNG(const PNG &png) {
-
+PNG::PNG(const PNG &other) {
+    
 }
 PNG::PNG(const string &filename) {
     read(filename);
 }
 PNG::PNG(int32_t width, int32_t height) {
-
+    //TODO
 }
 PNG::~PNG() {
-
+    //Nothing special to destroy
 }
 void PNG::update_metadata() {
-
+    //Nothing to update
 }
 void PNG::print(ostream &os) const {
-    os << "Width x Height" << endl;
-    os << png_get_image_width(png,pngi) << "x" << png_get_image_height(png,pngi) << endl;
+    os << image_name << endl;
+    os << "Width: " << png_get_image_width(png, pngi) << endl;
+    os << "Height: " << png_get_image_height(png,pngi) << endl;
+    os << "Bit Depth: " << int(png_get_bit_depth(png, pngi)) << endl;
+    os << "Color Type: " << int(png_get_color_type(png,pngi)) << endl;
+    os << "Compression Type: " << int(png_get_compression_type(png, pngi)) << endl;
+    os << "Pixel Aspect Ratio: " << png_get_pixel_aspect_ratio(png, pngi) << endl;
+    os << "Pixels Per Meter: " << png_get_pixels_per_meter(png, pngi) << endl;
 }
 void PNG::read(const string &filename) {
+    set_image_name(filename);
     FILE *inp = fopen(filename.c_str(), "rb");
     png = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
     pngi = png_create_info_struct(png);

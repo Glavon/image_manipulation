@@ -25,6 +25,7 @@ void BMP::update_metadata() {
     fheader.file_size = uint32_t(iheader.size_image + fheader.offset_data);
 }
 void BMP::print(ostream &os) const {
+    os << "BMP: " << image_name << endl;
     os << "File Header" << endl;
     os << "File Type: " << fheader.file_type << endl;
     if(fheader.file_type == 19778) {
@@ -62,6 +63,7 @@ void BMP::print(ostream &os) const {
     }
 }
 void BMP::read(const string &filename) {
+    set_image_name(filename);
     ifstream inp{filename, std::ios_base::binary};
     if(inp) {
         inp.read((char*)&fheader, sizeof(fheader));

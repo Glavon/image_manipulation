@@ -29,13 +29,17 @@ class Image {
     */
     virtual void print(std::ostream &os) const = 0;
     /*
-    Reads image in from file
+    Reads image in from file and sets filename
     */
     virtual void read(const std::string &filename) = 0;
     /*
-    Writes image to file
+    Writes metadata and image data to binary file
     */
     virtual void write(const std::string &filename) const = 0;
+    /*
+    Sets image name, helps when printing metadata for image
+    */
+    void set_image_name(std::string name);
     /*
     Compresses the image by finding the smallest prime
     that is a factor of the width and height of the image,
@@ -167,6 +171,7 @@ class Image {
     };
     int width{0}, height{0}; //stores the width and height for temp use
                              //metadata should be updated whenever this is changed
+    std::string image_name{"new_image"};
     std::vector<Pixel*> *pixels; //stores actual pixel data
 };
 #endif
