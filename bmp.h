@@ -31,7 +31,7 @@ class BMP : public Image {
     /*
     Writes fheader, iheader, cheader to file then pixel data as binary
     */
-    void write(const std::string &filename) const;
+    void write() const;
     friend std::ostream& operator<<(std::ostream& os, const BMP &bmp) {
         bmp.print(os);
         return os;

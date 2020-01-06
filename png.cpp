@@ -78,6 +78,9 @@ void PNG::read(const string &filename) {
     }
     fclose(inp);
 }
-void PNG::write(const string &filename) const {
-
+void PNG::write() const {
+    FILE *inp = fopen(image_name.c_str(), "fb");
+    png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+    png_infop pinfo = png_create_info_struct(png_ptr);
+    //TODO finish
 }

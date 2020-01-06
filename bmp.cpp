@@ -111,8 +111,8 @@ void BMP::read(const string &filename) {
     update_metadata();
     return;
 }
-void BMP::write(const string &filename) const {
-    ofstream out(filename, ios_base::binary);
+void BMP::write() const {
+    ofstream out(image_name, ios_base::binary);
     out.write((char*)&fheader, sizeof(fheader));
     out.write((char*)&iheader, sizeof(iheader));
     if(iheader.bit_count == 32) {

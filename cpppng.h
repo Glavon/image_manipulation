@@ -27,7 +27,7 @@ class PNG : public Image {
     void update_metadata();
     void print(std::ostream &os) const;
     void read(const std::string &filename);
-    void write(const std::string &filename) const;
+    void write() const;
     friend std::ostream& operator<<(std::ostream& os, const PNG &png) {
         png.print(os);
         return os;

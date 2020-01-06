@@ -35,7 +35,7 @@ class Image {
     /*
     Writes metadata and image data to binary file
     */
-    virtual void write(const std::string &filename) const = 0;
+    virtual void write() const = 0;
     /*
     Sets image name, helps when printing metadata for image
     */
